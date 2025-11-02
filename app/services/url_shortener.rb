@@ -8,7 +8,9 @@ class UrlShortener
         short_code = generate_short_code
         # Create a new shortened URL record in the database
         ShortenedUrl.create(original_url: @url, short_code: short_code)
-        return short_code
+
+        # return the short code
+        short_code
     end
 
     # "private" in Ruby makes all subsequent methods in the class private,
@@ -24,7 +26,9 @@ class UrlShortener
         # advised to use SecureRandom for generating random alphanumeric codes
         # plus its only 6 characters long
         short_code = SecureRandom.alphanumeric(6)
-        return short_code unless ShortenedUrl.exists?(short_code: short_code)
+
+        # return the short code unless it already exists in the database
+        short_code unless ShortenedUrl.exists?(short_code: short_code)
     end
 end
 

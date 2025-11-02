@@ -16,6 +16,10 @@
      background-size: 10px 10px, 10px 10px, 10px 5px;
      background-position: 0px 0px, 5px 5px, 0px 0px;
  }
+ .card-title,
+ .card-body {
+     color: #fff;
+ }
  h1, h2, h3, h4, h5, h6 {
     text-align: center;
  }
@@ -24,12 +28,20 @@
     font-size: 30px;
  }
 
- .form-holder {
+ .card.gabe {
     max-width: 600px;
     margin: 0 auto;
-    border-radius: 10px;
 
     background: #333;
 
-    padding: 20px;
+    padding: 10px 16px;
+ }
+
+ @media (max-width: 767px) {
+    .card.gabe {
+        max-width: 100%;
+        margin-left: 16px;
+        margin-right: 16px;
+        padding: 10px;
+    }
  }
