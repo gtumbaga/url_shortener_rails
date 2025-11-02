@@ -1,0 +1,15 @@
+<div class="mt-4">
+    <h1>Shorten URL</h1>
+
+    <div class="form-holder mt-4">
+        <%# advantages to rails helper form_with %>
+        <%# 1. It's more secure with automatic CSRF protection %>
+        <%# 2. Automatic Turbo integration (faster page loads) %>
+        <%# 3. Easier data binding with models %>
+        <%= form_with url: @shorten_url_path, method: :post, class: "d-flex" do |form| %>
+            <%= form.text_field :url, placeholder: "Enter your URL", class: "form-control me-2", autocomplete: "off" %>
+            <%= form.submit "Shorten", class: "btn btn-primary" %>
+        <% end %>
+    </div>
+</div>
+

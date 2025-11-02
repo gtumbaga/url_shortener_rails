@@ -1,0 +1,38 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">URL Shortened! ✅</h2>
+
+                    <div class="mb-3">
+                        <label class="form-label"><strong>Original URL:</strong></label>
+                        <p class="text-break"><%= @original_url %></p>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label"><strong>Shortened URL:</strong></label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" value="<%= @shortened_url %>" id="shortenedUrl" readonly>
+                            <button class="btn btn-outline-secondary" type="button" onclick="copyToClipboard()">
+                                Copy
+                            </button>
+                        </div>
+                    </div>
+
+                    <%= link_to "Shorten Another", root_path, class: "btn btn-primary" %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function copyToClipboard() {
+    const input = document.getElementById('shortenedUrl');
+    input.select();
+    document.execCommand('copy');
+    alert('Copied to clipboard!');
+}
+</script>
+
