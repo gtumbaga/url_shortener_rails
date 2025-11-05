@@ -9,6 +9,12 @@ Rails.application.configure do
   # Do not eager load code on boot.
   config.eager_load = false
 
+  # Allow requests from Docker container hostnames and custom domains
+  config.hosts << "u.omga.be"
+  config.hosts << "url_shortener_web"
+  # Or allow all hosts in development (less secure but more flexible):
+  # config.hosts.clear
+
   # Show full error reports.
   config.consider_all_requests_local = true
 

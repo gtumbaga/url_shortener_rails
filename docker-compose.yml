@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  url_shortener_web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: ./bin/rails server -b 0.0.0.0 -p 3001
+    volumes:
+      # Mount application code for hot-reloading
+      - .:/rails
+      # Cache gems to avoid reinstalling on every restart
+      - bundle_cache:/usr/local/bundle
+      # Exclude tmp and log directories from sync (performance)
+      - /rails/tmp
+      - /rails/log
+    ports:
+      - "3001:3001"
+    environment:
+      - RAILS_ENV=development
+      # - DB_HOST=db
+      # - DB_USERNAME=root
+      # - DB_PASSWORD=password
+    # Use environment variables from .env file
+    env_file:
+      - .env
+    # depends_on:
+    #   db:
+    #     condition: service_healthy
+    networks:
+      - webnet
+    stdin_open: true
+    tty: true
+
+  # db:
+  #   image: mysql:8.0
+  #   volumes:
+  #     - mysql_data:/var/lib/mysql
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: password
+  #     MYSQL_DATABASE: gabeurl_rails
+  #   ports:
+  #     - "3306:3306"
+  #   healthcheck:
+  #     test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-ppassword"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
+
+volumes:
+#   mysql_data:
+#     driver: local
+   bundle_cache:
+     driver: local
+
+networks:
+  webnet:
+    external: true
